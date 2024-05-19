@@ -1,2 +1,2 @@
-# python_sandbox
+# Python Sandbox
 Playground for hacking around with Python3
