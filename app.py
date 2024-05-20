@@ -36,11 +36,3 @@ def login_get():
 @app.post("/login")
 def login_post():
     return f'Posting login creds...'
-
-with app.test_request_context():
-    print(url_for('post_index', post_id=7))
-    print(url_for('projects'))
-    print(url_for('about'))
-    print(url_for('login_get'))
-    print(url_for('login_get', next='/about'))
-    print(url_for('profile', username='Rick Sanchez'))

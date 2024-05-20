@@ -3,6 +3,9 @@
 
 {% block head %}
     {{ super() }}
+    <style type="text/css">
+        .important { color: #6699cc; } /* Override for the About page */
+    </style>
     <script src="{{ url_for('static', filename='test.js') }}"></script>
 {% endblock %}
 
