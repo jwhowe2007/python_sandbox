@@ -3,6 +3,10 @@
     font-weight: bold;
 }
 
+.important {
+    color: #3366cc;
+}
+
 #footer {
     display: block;
     position: absolute;
