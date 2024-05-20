@@ -1,0 +1,11 @@
+.h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#footer {
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    padding: 1rem;
+}
