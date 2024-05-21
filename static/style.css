@@ -29,7 +29,3 @@
     bottom: 0%;
     padding: 1rem;
 }
-
-.blink {
-    animation: blink 1s step-end infinite;
-}
