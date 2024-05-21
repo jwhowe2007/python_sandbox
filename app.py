@@ -1,5 +1,5 @@
 from flask import Flask, url_for, request, render_template
-from markupsafe import escape
+from markupsafe import Markup, escape
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ def post_index(post_id):
 
 @app.route('/projects/')
 def projects():
-    return 'The project page'
+    return f"<p>{ Markup('<strong>Hello %s!</strong>') % '<blink>hacker</blink>' }</p>"
 
 @app.route('/about')
 def about():

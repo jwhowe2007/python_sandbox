@@ -7,9 +7,29 @@
     color: #336699;
 }
 
+#header {
+    display: block;
+    position: absolute;
+    top: 0%;
+    padding: 1rem;
+}
+
+#content {
+    display: flex;
+    position: relative;
+    top: auto;
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 #footer {
     display: block;
     position: absolute;
     bottom: 0%;
     padding: 1rem;
+}
+
+.blink {
+    animation: blink 1s step-end infinite;
 }
