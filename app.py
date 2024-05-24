@@ -13,9 +13,10 @@ def test():
     return "<p><strong>Testing page - secondary route</strong></p>"
 
 # Dynamic routes
+@app.route("/profile/")
 @app.route("/profile/<username>")
-def profile(username):
-    return f"<p><strong>Hello, {escape(username)}!</strong></p>"
+def profile(username=None):
+    return render_template('profile.html', name=username)
 
 @app.route("/post/<int:post_id>")
 def post_index(post_id):

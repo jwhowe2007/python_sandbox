@@ -7,16 +7,21 @@
         {% endblock %}
     </head>
     <body>
-        <div id="header">
-            {% block header %}
-            Header Content
-            {% endblock %}
-        </div>
-        <div id="content">{% block content %}{% endblock %}</div>
-        <div id="footer">
-            {% block footer %}
-            &copy; Copyright 2024 by <a href="http://mimiron:5000/">Justin Howe</a>
-            {% endblock %}
+        <div class="container">
+            <div id="header">
+                {% block header %}{% endblock %}
+            </div>
+            <div class="content">
+                <h3 class="important">
+                    {% block content_header %}{% endblock %}
+                </h3>
+                {% block content %}{% endblock %}
+            </div>
+            <div id="footer">
+                {% block footer %}
+                &copy; Copyright 2024 by <a href="http://mimiron:5000/">Justin Howe</a>
+                {% endblock %}
+            </div>
         </div>
     </body>
 </html>

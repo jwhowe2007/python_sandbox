@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Flask test app Profile page{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='test.js') }}"></script>
+{% endblock %}
+
+{% block header %}Header Menu {% endblock %}
+{% block content_header %}Profiles page{% endblock %}
+
+{% block content %}
+    <div>
+        <span>Profile for username: {{ name }}</span>
+    </div>
+{% endblock %}
