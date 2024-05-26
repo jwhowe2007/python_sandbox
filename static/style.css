@@ -15,7 +15,8 @@
 }
 
 .content {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: relative;
     top: auto;
     padding: 0 1rem 1rem 1rem;
@@ -31,4 +32,19 @@
     display: block;
     bottom: 0%;
     padding: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form * {
+    max-width: 50%;
+}
+
+.btn {
+    width: fit-content;
+    padding: 0.25em;
+    margin: 0.5em 0;
 }

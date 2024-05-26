@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Jinja Features Test Page{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='test.js') }}"></script>
+{% endblock %}
+
+{% block header %}Test Page Menu{% endblock %}
+{% block content_header %}Test Page{% endblock %}
+
+{% block content %}
+
+<form id="uploadform" enctype="multipart/form-data" action="/login" method="post">
+    <label for="username">Username:</label>
+    <input id="username" type="text" name="username">
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password">
+
+    <button class="btn btn-default" type="submit">Submit</button>
+</form>
+
+{% endblock %}

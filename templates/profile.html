@@ -6,11 +6,15 @@
     <script src="{{ url_for('static', filename='test.js') }}"></script>
 {% endblock %}
 
-{% block header %}Header Menu {% endblock %}
+{% block header %}Header Menu{% endblock %}
 {% block content_header %}Profiles page{% endblock %}
 
 {% block content %}
     <div>
-        <span>Profile for username: {{ name }}</span>
+        {% if name %}
+            <span>Profile for username: </span><strong>{{ name }}</strong>
+        {% else %}
+            <span>Anonymous profile</span>
+        {% endif %}
     </div>
 {% endblock %}

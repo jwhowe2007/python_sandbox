@@ -10,7 +10,7 @@ def hello_world():
 
 @app.route("/test")
 def test():
-    return "<p><strong>Testing page - secondary route</strong></p>"
+    return render_template('test.html')
 
 # Dynamic routes
 @app.route("/profile/")
@@ -21,10 +21,6 @@ def profile(username=None):
 @app.route("/post/<int:post_id>")
 def post_index(post_id):
     return f"Post {post_id}"
-
-@app.route('/projects/')
-def projects():
-    return f"<p>{ Markup('<strong>Hello %s!</strong>') % '<blink>hacker</blink>' }</p>"
 
 @app.route('/about')
 def about():
