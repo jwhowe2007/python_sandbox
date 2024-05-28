@@ -16,7 +16,7 @@ def test():
 @app.route("/profile/")
 @app.route("/profile/<username>")
 def profile(username=None):
-    return render_template('profile.html', name=username)
+    return render_template('profile.html', name=escape(username))
 
 @app.route("/post/<int:post_id>")
 def post_index(post_id):
