@@ -18,3 +18,9 @@ else:
     line_length = math.sqrt(x_length ** 2 + y_length ** 2)
 
 print("The distance between", line_point_1, "and", line_point_2, "is:", line_length)
+
+one_el_tuple = (1)
+foo = one_el_tuple
+
+print(one_el_tuple)
+print(foo)
