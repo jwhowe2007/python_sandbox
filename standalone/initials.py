@@ -3,7 +3,7 @@
 # First name and surname: Justin Howe
 # Fun Fact: In addition to learning programming languages, I love learning natural languages and foreign cultures as well!
 
-firstInitial = """
+FIRSTINITIAL = """
 JJJJJ   H   H
   J     H   H
   J     H   H
@@ -13,7 +13,7 @@ J J     H   H
  JJ     H   H
 """
 
-guitarPick = """
+GUITARPICK = """
 (--------)
  \      /
   \    /
@@ -21,5 +21,5 @@ guitarPick = """
     UU
 """
 
-print(firstInitial)
-print(guitarPick)
+print(FIRSTINITIAL)
+print(GUITARPICK)
