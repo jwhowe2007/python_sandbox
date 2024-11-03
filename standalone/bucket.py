@@ -1,2 +1,1 @@
-# junk file for code snippets
-if __name__ == "__main__":
+# Enter your code here. Read input from STDIN. Print output to STDOUT
