@@ -13,7 +13,6 @@ class MyHTMLParser(HTMLParser):
         print("Empty :", tag)
 
 parser = MyHTMLParser()
-#parser.feed("<html><head><title>HTML Parser - I</title></head><body><h1>HackerRank</h1><br /></br ></body></html>")
 
 html = ""
 lines = int(input().strip())
