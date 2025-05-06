@@ -8,6 +8,7 @@
 import os
 import pandas
 import numpy
+import urllib
 import json
 
 # DA SCRAPINATOR!!!
@@ -18,7 +19,6 @@ from bs4 import BeautifulSoup
 
 scrapinator.scraper_source_urls = "scraped/urls.txt"
 data_output_file = "scraped/prompt_output.csv"
-scrapinator.test_file = True
 
 walmart_id = "__NEXT_DATA__"
 
@@ -44,55 +44,56 @@ headers = {
 # At this point, we should have some data to parse. If not, throw our hands up and quit.
 # Get a dictionary of info based on what's required
 scraped_data = scrapinator.scrape_data(walmart_id, headers)
-product_data = []
 
-if (scraped_data):
-    product_data.append(scraped_data.get('url_0', []))
-else:
+if (not scraped_data):
     exit()
 
 mapped_list = []
 
-for product in product_data['props']['pageProps']['initialData']['searchResult']['itemStacks'][0]['items']:
-    if not product.get('id'):
-        continue # skip entries with no IDs
+for url_index, product_data in scraped_data.items():
+    for product in product_data['props']['pageProps']['initialData']['searchResult']['itemStacks'][0]['items']:
+        if not product.get('id'):
+            continue # skip entries with no IDs
 
-    if not product.get('category'):
-        category = 'No Category'
+        if not product.get('category'):
+            category = 'No Category'
+        else:
+            category = product.get('category').get('categoryPathId', 'No Category ID')
+
+        if not product.get('canonicalUrl'):
+            product_url = 'No URL'
+        else:
+            product_url = urllib.parse.unquote(product['canonicalUrl'])
+
+        if not product.get('price'):
+            product_price = 'No Price Given'
+        else:
+            product_price = '$' + str(product['price'])
+
+        if not product.get('numberOfReviews'):
+            product_rating = 'No Reviews'
+            product_rating_count = ''
+        else:
+            product_rating = product.get('averageRating', 'None')
+            product_rating_count = product.get('numberOfReviews')
+
+        dict_item = {
+            'Retailer Name': product.get('sellerName', 'Walmart'),
+            'Category': category,
+            'Product URL': product_url,
+            'Product Name': product.get('name', 'No Name'),
+            'Price': product_price,
+            'Rating': product_rating,
+            'Rating Count': product_rating_count,
+            'Available Sizes': '',
+            'Walmart Item #': product.get('usItemId', 'None'),
+            'SKU': product.get('id', 'None')
+        }
+
+        mapped_list.append(dict_item)
+
+    if (len(mapped_list) > 0):
+        df = pandas.DataFrame(mapped_list)
+        df.to_csv(f"scraped/prompt_output_{url_index}.csv", index=False)
     else:
-        category = product.get('category').get('categoryPathId', 'No Category ID')
-
-    if not product.get('canonicalUrl'):
-        product_url = 'No URL'
-    else:
-        product_url = urllib.parse.unquote(product['canonicalUrl'])
-
-    if not product.get('price'):
-        product_price = 'No Price Given'
-    else:
-        product_price = '$' + str(product['price'])
-
-    if not product.get('numberOfReviews'):
-        product_rating = 'No Reviews'
-        product_rating_count = ''
-    else:
-        product_rating = product.get('averageRating', 'None')
-        product_rating_count = product.get('numberOfReviews')
-
-    dict_item = {
-        'Retailer Name': product.get('sellerName', 'Walmart'),
-        'Category': category,
-        'Product URL': product_url,
-        'Product Name': product.get('name', 'No Name'),
-        'Price': product_price,
-        'Rating': product_rating,
-        'Rating Count': product_rating_count,
-        'Available Sizes': '',
-        'Walmart Item #': product.get('usItemId', 'None'),
-        'SKU': product.get('id', 'None')
-    }
-    mapped_list.append(dict_item)
-
-df = pandas.DataFrame(mapped_list)
-df.to_csv(data_output_file, index=False)
-
+        print ("No data found for data source at " + url_index + ".")
